@@ -1,0 +1,113 @@
+<div class="container mt-5">
+  <div
+    class="toast-container position-fixed top-0 end-0 p-3"
+    style="z-index: 1050;"
+  >
+    <div
+      class="toast"
+      id="successToast"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      data-bs-delay="3000"
+    >
+      <div class="toast-header">
+        <strong class="me-auto text-success">Success</strong>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body">
+        Job is successfully added!
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="max-width: 500px; margin: 0 auto; padding: 20px;">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4>Job Create</h4>
+      <button class="btn btn-secondary" [routerLink]="'/jobs'">
+        View All Jobs
+      </button>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="saveJob()" #jobForm="ngForm">
+        <div class="mb-3">
+          <label>Job Title</label>
+          <input
+            type="text"
+            [(ngModel)]="job_title"
+            name="job_title"
+            class="form-control"
+            required
+            pattern="^[a-zA-Z0-9\s]*$"
+            #jobTitle="ngModel"
+          />
+          <div *ngIf="jobTitle.invalid && jobTitle.touched" class="text-danger">
+            Job Title is required and cannot contain special characters.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Job Description</label>
+          <input
+            type="text"
+            [(ngModel)]="job_description"
+            name="job_description"
+            class="form-control"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label>Job Type</label>
+          <select
+            [(ngModel)]="job_type"
+            name="job_type"
+            class="form-control"
+            required
+          >
+            <option value="" disabled selected>Select Job Type</option>
+            <option value="Full-Time">Full-Time</option>
+            <option value="Part-Time">Part-Time</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Internship">Internship</option>
+          </select>
+          <div *ngIf="!job_type && jobForm.submitted" class="text-danger">
+            Job Type is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Job Location</label>
+          <input
+            type="text"
+            [(ngModel)]="jobLocation"
+            name="job_location"
+            class="form-control"
+            required
+            pattern="^[a-zA-Z0-9\s]*$"
+            #jobLocationField="ngModel"
+          />
+          <div *ngIf="jobLocationField.invalid && jobLocationField.touched" class="text-danger">
+            Job Location is required and cannot contain special characters.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="jobForm.invalid"
+            style="width: 100%;"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

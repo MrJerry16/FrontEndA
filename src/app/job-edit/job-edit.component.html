@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="card shadow-sm border-0" style="max-width: 600px; margin: 0 auto;">
+    <div class="card-header bg-success text-white">
+      <h4>Edit Job</h4>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="updateJob()">
+        <div class="mb-3">
+          <label for="jobTitle" class="form-label">Job Title</label>
+          <input type="text" class="form-control" id="jobTitle" [(ngModel)]="job.jobTitle" name="jobTitle" required>
+        </div>
+        <div class="mb-3">
+          <label for="jobDescription" class="form-label">Job Description</label>
+          <textarea class="form-control" id="jobDescription" [(ngModel)]="job.jobDescription" name="jobDescription" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="jobType" class="form-label">Job Type</label>
+          <input type="text" class="form-control" id="jobType" [(ngModel)]="job.jobType" name="jobType" required>
+        </div>
+        <div class="mb-3">
+          <label for="jobLocation" class="form-label">Job Location</label>
+          <input type="text" class="form-control" id="jobLocation" [(ngModel)]="job.jobLocation" name="jobLocation" required>
+        </div>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-success w-100">Update Job</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="updateToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Notification</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+
+    </div>
+  </div>
+</div>
